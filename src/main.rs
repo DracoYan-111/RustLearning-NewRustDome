@@ -1,19 +1,52 @@
 use std::io;
 use rand::Rng;
 use std::cmp::Ordering;
+use chrono::prelude::*;
+use chrono::format::{DelayedFormat, StrftimeItems};
+use chrono::ParseResult;
+
 
 fn main() {
-    //键盘输入用户名称
-    println!("请输入名称");
-    let mut UserName: String = String::new();
-    io::stdin().read_line(&mut UserName).expect("接收失败");
-    //键盘输入用户性别
-    println!("请输入性别 1:男 2:女");
-    let mut UserSex: String = String::new();
+    /* //键盘输入用户名称
+     println!("请输入名称");
+     let mut UserName: String = String::new();
+     io::stdin().read_line(&mut UserName).expect("接收失败");
+     //键盘输入用户性别
+     println!("请输入性别 1:男 2:女");
+     let mut UserSex: String = String::new();
+     loop {
+         let mut UserSexTwo: String = String::new();
+         io::stdin().read_line(&mut UserSexTwo).expect("接收失败");
+         let UserSexTwo: u32 = match UserSexTwo.trim().parse()
+         {
+             Ok(num) => num,
+             Err(_) => {
+                 println!("请重新输入");
+                 continue;
+             }
+         };
+         if UserSexTwo == 1 {
+             UserSex = "男".parse().unwrap();
+             break;
+         }
+         if UserSexTwo == 2
+         {
+             UserSex = "女".parse().unwrap();
+             break;
+         } else {
+             println!("请重新输入!");
+             continue;
+         }
+     }*/
+    //键盘输入用户出生年月
+    println!("请输入出生年");
+    //let fmt = "%Y-%m-%d %H:%M:%S" 完整写发
+    //时间转型
+    let time: u32 = GrtTime();
     loop {
-        let mut UserSexTwo: String = String::new();
-        io::stdin().read_line(&mut UserSexTwo).expect("接收失败");
-        let UserSexTwo: u32 = match UserSexTwo.trim().parse()
+        let mut UserAge: String = String::new();
+        io::stdin().read_line(&mut UserAge).expect("接收失败");
+        let UserAge: u32 = match UserAge.trim().parse()
         {
             Ok(num) => num,
             Err(_) => {
@@ -21,22 +54,12 @@ fn main() {
                 continue;
             }
         };
-        if UserSexTwo == 1 {
-            UserSex = "男".parse().unwrap();
-            break;
-        }
-        if UserSexTwo == 2
-        {
-            UserSex = "女".parse().unwrap();
-            break;
-        } else {
-            println!("请重新输入!");
-            continue;
-        }
     }
-    
-    println!("用户姓名{}", UserName);
-    println!("用户性别{}", UserSex);
+
+    println!("now: {}", str_dates);
+
+    /*println!("用户姓名{}", UserName);
+    println!("用户性别{}", UserSex);*/
 
     /*/* fn test() -> i32 {
          let a = [2, 2, 6, 4, 5];
@@ -100,6 +123,15 @@ fn main() {
     for i  in 0..3 {
         println!("user grades == {} ",user_test.grades[i]);
     }*/
+}
+
+fn GrtTime() -> u32 {
+    let fmt = "%Y";
+    let now: DateTime<Local> = Local::now();
+    let dft: DelayedFormat<StrftimeItems> = now.format(fmt);
+    let str_date: String = dft.to_string(); // 2021-01-04 20:02:09
+    let str_dates: u32 = str_date.trim().parse().expect("错误");
+    str_dates
 }
 
 fn structure(
