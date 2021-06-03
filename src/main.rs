@@ -7,41 +7,40 @@ use chrono::ParseResult;
 
 
 fn main() {
-    /* //键盘输入用户名称
-     println!("请输入名称");
-     let mut UserName: String = String::new();
-     io::stdin().read_line(&mut UserName).expect("接收失败");
-     //键盘输入用户性别
-     println!("请输入性别 1:男 2:女");
-     let mut UserSex: String = String::new();
-     loop {
-         let mut UserSexTwo: String = String::new();
-         io::stdin().read_line(&mut UserSexTwo).expect("接收失败");
-         let UserSexTwo: u32 = match UserSexTwo.trim().parse()
-         {
-             Ok(num) => num,
-             Err(_) => {
-                 println!("请重新输入");
-                 continue;
-             }
-         };
-         if UserSexTwo == 1 {
-             UserSex = "男".parse().unwrap();
-             break;
-         }
-         if UserSexTwo == 2
-         {
-             UserSex = "女".parse().unwrap();
-             break;
-         } else {
-             println!("请重新输入!");
-             continue;
-         }
-     }*/
+
+    //键盘输入用户名称
+    println!("请输入名称");
+    let mut UserName: String = String::new();
+    io::stdin().read_line(&mut UserName).expect("接收失败");
+    //键盘输入用户性别
+    println!("请输入性别 1:男 2:女");
+    let mut UserSex: String = String::new();
+    loop {
+        let mut UserSexTwo: String = String::new();
+        io::stdin().read_line(&mut UserSexTwo).expect("接收失败");
+        let UserSexTwo: u32 = match UserSexTwo.trim().parse()
+        {
+            Ok(num) => num,
+            Err(_) => {
+                println!("请重新输入");
+                continue;
+            }
+        };
+        if UserSexTwo == 1 {
+            UserSex = "男".parse().unwrap();
+            break;
+        }
+        if UserSexTwo == 2
+        {
+            UserSex = "女".parse().unwrap();
+            break;
+        } else {
+            println!("请重新输入!");
+            continue;
+        }
+    }
     //键盘输入用户出生年月
     println!("请输入出生年");
-    //let fmt = "%Y-%m-%d %H:%M:%S" 完整写发
-    //时间转型
     let time: u32 = GrtTime();
     let mut UserAge: u32;
     loop {
@@ -55,80 +54,102 @@ fn main() {
                 continue;
             }
         };
-        UserAge = time - UserAgeTwo;
-        break;
+        if UserAgeTwo <= time && UserAgeTwo > 1940 {
+            UserAge = time - UserAgeTwo;
+            break;
+        } else {
+            println!("请重新输入");
+            continue;
+        }
     }
-    println!("now: {}", &mut UserAge);
-
-
-    /*println!("用户姓名{}", UserName);
-    println!("用户性别{}", UserSex);*/
-
-    /*/* fn test() -> i32 {
-         let a = [2, 2, 6, 4, 5];
-         let mut count: i32 = 0;
-         for i in 0..5 {
-             count = count + a[i];
-         }
-         count
-     }
-
-
-     println!("游戏开始");
-     loop {
-         println!("请猜一个数字");
-         /*let mut fee = String::new();
-         io::stdin().read_line(&mut fee).expect("接收失败");
-         let fee: u32 = match fee.trim().parse()
-         {
-             Ok(num) => num,
-             Err(_) => continue,
-         };*/
-
-         let ser: i32 = rand::thread_rng().gen_range(1, 101);
-
-         if test() < ser {
-             println!("太大了");
-         }
-         if test() == ser {
-             println!("答对了");
-             break;
-         }
-         if test() > ser {
-             println!("太小了");
-         }
-         println!("------{}", ser);
-     }
-     println!("//////{}", test());
-
-     */
-
-    struct User {
-        name: String,
-        age: u32,
-        sex: String,
-        grades: [i32;3],
+    println!("请输入用户身高");
+    let mut UserHeight: f64;
+    loop {
+        let mut UserHeightTwo: String = String::new();
+        io::stdin().read_line(&mut UserHeightTwo).expect("接收失败");
+        let UserHeightTwo: f64 = match UserHeightTwo.trim().parse()
+        {
+            Ok(num) => num,
+            Err(_) => {
+                println!("请重新输入");
+                continue;
+            }
+        };
+        if UserHeightTwo < 280.0 && UserHeightTwo > 50.0 {
+            UserHeight = UserHeightTwo;
+            break;
+        } else {
+            println!("请重新输入");
+            continue;
+        }
+    }
+    println!("请输入用户体重");
+    let mut UserBodyWeight: f64;
+    loop {
+        let mut UserBodyWeightTwo: String = String::new();
+        io::stdin().read_line(&mut UserBodyWeightTwo).expect("接收失败");
+        let UserBodyWeightTwo: f64 = match UserBodyWeightTwo.trim().parse()
+        {
+            Ok(num) => num,
+            Err(_) => {
+                println!("请重新输入");
+                continue;
+            }
+        };
+        if UserBodyWeightTwo < 500.0 && UserBodyWeightTwo > 15.0 {
+            UserBodyWeight = UserBodyWeightTwo;
+            break;
+        } else {
+            println!("请重新输入");
+            continue;
+        }
     }
 
-    let vvv:usize = rand::thread_rng().gen_range(0, 3);
-    let degree: [&str; 3] = ["简单","中等","复杂"];
-    let user_test = User {
-        name: String::from("RUST"),
-        age: rand::thread_rng().gen_range(1, 101),
+    let Constellation: [&str; 12] = ["白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "摩羯座", "水瓶座", "双鱼座"];
+    println!("请输入用户星座");
+    let mut UserConstellation: String = String::new();
+    loop {
+        let mut Pan: bool = false;
+        io::stdin().read_line(&mut UserConstellation).expect("接收失败");
+        for i in 0..Constellation.len()
+        {
+            if (UserConstellation.trim()).eq(Constellation[i]) {
+                Pan = true;
+                break;
+            } else {
+                continue;
+            }
+        }
+        if Pan == true {
+            break;
+        } else {
+            println!("请重新输入");
+            continue;
+        }
+    }
 
-        sex: String::from(degree[vvv]),
-        grades:[rand::thread_rng().gen_range(1, 101),rand::thread_rng().gen_range(1, 101),rand::thread_rng().gen_range(1, 101)],
-    };
-    println!("user name == {} ", user_test.name);
-    println!("user age == {} ", user_test.age);
-    println!("user sex == {} ", user_test.sex);
+    let mut UserLuckyNumber: u32 = rand::thread_rng().gen_range(1, 101);
+    println!("用户姓名为{}", UserName);
+    println!("用户性别为:{}", UserSex);
+    println!("用户年龄为:{}", UserAge);
+    println!("用户身高为:{}", UserHeight);
+    println!("用户体重为:{}", UserBodyWeight);
+    println!("用户幸运数字为:{}", UserLuckyNumber);
+    println!("用户星座为:{}", UserConstellation);
 
-    for i  in 0..3 {
-        println!("user grades == {} ",user_test.grades[i]);
-    }*/
+    structure(UserName,
+              UserSex,
+              UserAge,
+              UserHeight,
+              UserBodyWeight,
+              UserLuckyNumber,
+              UserConstellation);
 }
 
+
 fn GrtTime() -> u32 {
+    //let fmt = "%Y-%m-%d %H:%M:%S" 完整写发
+    //时间转型
     let fmt = "%Y";
     let now: DateTime<Local> = Local::now();
     let dft: DelayedFormat<StrftimeItems> = now.format(fmt);
@@ -138,13 +159,13 @@ fn GrtTime() -> u32 {
 }
 
 fn structure(
-    user_name: &str,
-    user_sex: &str,
+    user_name: String,
+    user_sex: String,
     user_age: u32,
     user_height: f64,
     user_body_weight: f64,
     user_lucky_number: u32,
-    user_constellation: &str,
+    user_constellation: String,
     /*    user_hobby: [str; 5],
         user_grades: [u32; 3],*/
 ) {
@@ -189,6 +210,4 @@ fn structure(
                 //各科成绩
                 grades: user_grades,*/
     };
-
-    println!();
 }
