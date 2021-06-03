@@ -43,10 +43,11 @@ fn main() {
     //let fmt = "%Y-%m-%d %H:%M:%S" 完整写发
     //时间转型
     let time: u32 = GrtTime();
+    let mut UserAge: u32;
     loop {
-        let mut UserAge: String = String::new();
-        io::stdin().read_line(&mut UserAge).expect("接收失败");
-        let UserAge: u32 = match UserAge.trim().parse()
+        let mut UserAgeTwo: String = String::new();
+        io::stdin().read_line(&mut UserAgeTwo).expect("接收失败");
+        let UserAgeTwo: u32 = match UserAgeTwo.trim().parse()
         {
             Ok(num) => num,
             Err(_) => {
@@ -54,9 +55,11 @@ fn main() {
                 continue;
             }
         };
+        UserAge = time - UserAgeTwo;
+        break;
     }
+    println!("now: {}", &mut UserAge);
 
-    println!("now: {}", str_dates);
 
     /*println!("用户姓名{}", UserName);
     println!("用户性别{}", UserSex);*/
