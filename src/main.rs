@@ -7,7 +7,6 @@ use chrono::ParseResult;
 
 
 fn main() {
-
     //键盘输入用户名称
     println!("请输入名称");
     let mut UserName: String = String::new();
@@ -33,6 +32,7 @@ fn main() {
         if UserSexTwo == 2
         {
             UserSex = "女".parse().unwrap();
+
             break;
         } else {
             println!("请重新输入!");
@@ -43,8 +43,8 @@ fn main() {
     println!("请输入出生年");
     let time: u32 = GrtTime();
     let mut UserAge: u32;
+    let mut UserAgeTwo: String = String::new();
     loop {
-        let mut UserAgeTwo: String = String::new();
         io::stdin().read_line(&mut UserAgeTwo).expect("接收失败");
         let UserAgeTwo: u32 = match UserAgeTwo.trim().parse()
         {
@@ -110,10 +110,12 @@ fn main() {
     let mut UserConstellation: String = String::new();
     loop {
         let mut Pan: bool = false;
-        io::stdin().read_line(&mut UserConstellation).expect("接收失败");
+        let mut UserConstellationTwo: String = String::new();
+        io::stdin().read_line(&mut UserConstellationTwo).expect("接收失败");
         for i in 0..Constellation.len()
         {
-            if (UserConstellation.trim()).eq(Constellation[i]) {
+            if (UserConstellationTwo.trim()).eq(Constellation[i]) {
+                UserConstellation = UserConstellationTwo;
                 Pan = true;
                 break;
             } else {
