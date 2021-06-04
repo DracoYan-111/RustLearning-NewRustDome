@@ -106,6 +106,7 @@ fn main() {
     }
 
     let Constellation: [&str; 12] = ["白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "摩羯座", "水瓶座", "双鱼座"];
+
     println!("请输入用户星座");
     let mut UserConstellation: String = String::new();
     loop {
@@ -115,6 +116,7 @@ fn main() {
         for i in 0..Constellation.len()
         {
             if (UserConstellationTwo.trim()).eq(Constellation[i]) {
+
                 UserConstellation = UserConstellationTwo;
                 Pan = true;
                 break;
@@ -146,6 +148,8 @@ fn main() {
               UserBodyWeight,
               UserLuckyNumber,
               UserConstellation);
+
+
 }
 
 
@@ -159,6 +163,12 @@ fn GrtTime() -> u32 {
     let str_dates: u32 = str_date.trim().parse().expect("错误");
     str_dates
 }
+
+/*
+查看用户是否可以领取
+返回 true / false
+ */
+
 
 fn structure(
     user_name: String,
@@ -213,3 +223,4 @@ fn structure(
                 grades: user_grades,*/
     };
 }
+
